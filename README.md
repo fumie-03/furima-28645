@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column          | Type   | Options                      |
-| --------------- | ------ | ---------------------------- |
-| nickname        | string | null: false                  |
-| email           | string | null: false, unique:true     |
-| password        | string | null: false                  |
-| last_name       | string | null: false                  |
-| first_name      | string | null: false                  |
-| last_name_kana  | string | null: false                  |
-| first_name_kana | string | null: false                  |
-| birth_date      | date   | null: false                  |
+| Column             | Type   | Options                      |
+| ------------------ | ------ | ---------------------------- |
+| nickname           | string | null: false                  |
+| email              | string | null: false, unique:true     |
+| encrypted_password | string | null: false                  |
+| last_name          | string | null: false                  |
+| first_name         | string | null: false                  |
+| last_name_kana     | string | null: false                  |
+| first_name_kana    | string | null: false                  |
+| birth_date         | date   | null: false                  |
 
 ### Association
 
@@ -27,7 +27,7 @@
 | user           | references | null: false, foreign_key: true |
 | images_id      | integer    | null: false                    |
 | category_id    | integer    | null: false                    |
-| condiotion_id  | integer    | null: false                    |
+| condition_id   | integer    | null: false                    |
 | postage_id     | integer    | null: false                    |
 | prefecture_id  | integer    | null: false                    |
 | send_time_id   | integer    | null: false                    |
@@ -64,7 +64,7 @@
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| post_code      | integer    | null: false                    |
+| post_code      | string     | null: false                    |
 | prefectures_id | integer    | null: false                    |
 | city           | string     | null: false                    |
 | building_name  | string     |                                |
