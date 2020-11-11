@@ -25,15 +25,12 @@
 | name           | string     | null: false                    |
 | explanation    | text       | null: false                    |
 | user           | references | null: false, foreign_key: true |
-| images_id      | integer    | null: false                    |
 | category_id    | integer    | null: false                    |
 | condition_id   | integer    | null: false                    |
 | postage_id     | integer    | null: false                    |
 | prefecture_id  | integer    | null: false                    |
 | send_time_id   | integer    | null: false                    |
 | price          | integer    | null: false                    |
-| service_charge | integer    | null: false                    |
-| profit_on_sale | integer    | null: false                    |
 
 ### Association
 
@@ -67,6 +64,7 @@
 | post_code      | string     | null: false                    |
 | prefectures_id | integer    | null: false                    |
 | city           | string     | null: false                    |
+| street_number  | string     | null: false                    |
 | building_name  | string     |                                |
 | phone_number   | string     | null: false, unique: true      |
 | buyer          | references | null: false, foreign_key: true |
