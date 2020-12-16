@@ -6,10 +6,10 @@ class ContactForm
   validates :user_id, presence: true
   validates :item_id, presence: true
   validates :post_code, presence: true, format: { with: /\A\d{3}[-]\d{4}\z/ }
-  validates :prefecture_id, presence: true
+  validates :prefecture_id, numericality: { other_than: 1, message: "Select"}
   validates :city, presence: true
   validates :street_number, presence: true
-  validates :phone_number, numericality: {only_integer: true}
+  validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
 
   def save
     # 各テーブルにデータを保存する処理を書く
