@@ -1,6 +1,6 @@
 class ContactForm
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :street_number, :building_name, :phone_number
+  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :street_number, :building_name, :phone_number, :token
 
   # ここにバリデーションの処理を書く
   validates :user_id, presence: true
@@ -10,6 +10,7 @@ class ContactForm
   validates :city, presence: true
   validates :street_number, presence: true
   validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
+  validates :token, presence: true
 
   
 

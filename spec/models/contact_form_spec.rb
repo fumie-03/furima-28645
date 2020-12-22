@@ -7,7 +7,7 @@ RSpec.describe ContactForm, type: :model do
 
   describe '商品購入機能' do
     context '商品購入がうまくいくとき' do
-      it 'user_idとitem_id,post_code,prefecture_id,city,street_number,phone_numberが存在していれば保存できること' do
+      it 'user_idとitem_id,post_code,prefecture_id,city,street_number,phone_number,tokenが存在していれば保存できること' do
         expect(@contact_form).to be_valid
       end
     end
@@ -47,6 +47,12 @@ RSpec.describe ContactForm, type: :model do
         @contact_form.phone_number = nil
         @contact_form.valid?
         expect(@contact_form.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
+      end
+
+      it "tokenが空では登録できないこと" do
+        @contact_form.token = nil
+        @contact_form.valid?
+        expect(@contact_form.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
