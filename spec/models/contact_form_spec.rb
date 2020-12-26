@@ -74,6 +74,18 @@ RSpec.describe ContactForm, type: :model do
         @contact_form.valid?
         expect(@contact_form.errors.full_messages).to include("Token can't be blank")
       end
+
+      it "user_idが空では購入できないこと" do
+        @contact_form.user_id = nil
+        @contact_form.valid?
+        expect(@contact_form.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "item_idが空では購入できないこと" do
+        @contact_form.item_id = nil
+        @contact_form.valid?
+        expect(@contact_form.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end

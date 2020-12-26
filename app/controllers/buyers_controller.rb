@@ -5,6 +5,9 @@ class BuyersController < ApplicationController
 
   def index
     @contact = ContactForm.new
+    if current_user.id == @item.user.id
+      redirect_to root_path
+    end
   end
 
   def create
@@ -26,6 +29,7 @@ class BuyersController < ApplicationController
       currency: 'jpy'
     )
   end
+
 
   private
 
