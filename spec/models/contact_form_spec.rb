@@ -2,12 +2,20 @@ require 'rails_helper'
 
 RSpec.describe ContactForm, type: :model do
   before do
-      @contact_form = FactoryBot.build(:contact_form)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    sleep(1)
+    @contact_form = FactoryBot.build(:contact_form, user_id: @user.id, item_id: @item.id)
   end
 
   describe '商品購入機能' do
     context '商品購入がうまくいくとき' do
       it 'user_idとitem_id,post_code,prefecture_id,city,street_number,phone_number,tokenが存在していれば保存できること' do
+        expect(@contact_form).to be_valid
+      end
+
+      it '建物番号がなくても保存できること' do
+        @contact_form.building_name = nil
         expect(@contact_form).to be_valid
       end
     end
@@ -49,6 +57,18 @@ RSpec.describe ContactForm, type: :model do
         expect(@contact_form.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
       end
 
+      it 'phone_numberが12桁以上では登録できないこと' do
+        @contact_form.phone_number = '090123456789'
+        @contact_form.valid?
+        expect(@contact_form.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'phone_numberが英数混合では登録できないこと' do
+        @contact_form.phone_number = '090123456nm'
+        @contact_form.valid?
+        expect(@contact_form.errors.full_messages).to include("Phone number is invalid")
+      end
+
       it "tokenが空では登録できないこと" do
         @contact_form.token = nil
         @contact_form.valid?
@@ -57,3 +77,4 @@ RSpec.describe ContactForm, type: :model do
     end
   end
 end
+
