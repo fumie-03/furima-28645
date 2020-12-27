@@ -34,7 +34,7 @@ class BuyersController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact_form).permit(:user_id, :item_id, :post_code, :prefecture_id, :city, :street_number, :building_name, :phone_number,).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:contact_form).permit(:post_code, :prefecture_id, :city, :street_number, :building_name, :phone_number,).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def set_item
