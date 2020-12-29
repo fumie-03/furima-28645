@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
    before_action :set_item1, only: [:show, :edit, :update]
-   before_action :authenticate_user!, only: [:new]
+   before_action :authenticate_user!, only: [:new, :edit]
 
   def index
     @items = Item.order(id: "DESC")
